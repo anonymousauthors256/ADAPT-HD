@@ -1,0 +1,49 @@
+# AdaptHD hyperparameter configurations.
+#
+# Each dataset lists two presets, indexed by hypervector dimension D:
+#   - the compact   D = 2000  model
+#   - the large     D = 10000 model
+#
+# Fields:
+#   D              : hypervector dimensionality
+#   k              : number of pooled mask blocks (AdaptiveMaxPool1d size)
+#   lr             : learning rate
+#   epochs         : training epochs
+#   acc_th         : val-accuracy threshold at which the sparsity loss turns on
+#   mask_threshold : initial threshold (init_ratio) of the learnable mask
+#   batch_size     : minibatch size
+#   lambda_norm    : weight of the L2 mask-sparsity penalty
+#
+# Shared defaults applied unless overridden per preset:
+defaults:
+  bit_width: 8
+  weight_bit_width: 8
+  inp_bit_width: null
+  bias_linear: null
+  dropout_p: 0
+  dtype: float32
+
+datasets:
+  isolet:
+    - {D: 2000,  k: 200,  lr: 0.001, epochs: 300, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+    - {D: 10000, k: 1250, lr: 0.002, epochs: 200, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+
+  emg_hand_gestures:
+    - {D: 2000,  k: 200,  lr: 0.002, epochs: 200, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+    - {D: 10000, k: 1250, lr: 0.001, epochs: 275, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+
+  mnist:
+    - {D: 2000,  k: 200,  lr: 0.002, epochs: 300, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+    - {D: 10000, k: 1250, lr: 0.002, epochs: 200, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 64,  lambda_norm: 0.05}
+
+  fashion_mnist:
+    - {D: 2000,  k: 200,  lr: 0.001, epochs: 200, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 128, lambda_norm: 0.05}
+    - {D: 10000, k: 1250, lr: 0.001, epochs: 200, acc_th: 0.93, mask_threshold: 0.01,  batch_size: 128, lambda_norm: 0.05}
+
+  ucihar:
+    - {D: 2000,  k: 200,  lr: 0.002, epochs: 300, acc_th: 0.93, mask_threshold: 0.005, batch_size: 64,  lambda_norm: 0.01}
+    - {D: 10000, k: 1250, lr: 0.002, epochs: 200, acc_th: 0.93, mask_threshold: 0.005, batch_size: 64,  lambda_norm: 0.01}
+
+  pamap2:
+    - {D: 2000,  k: 200,  lr: 0.001, epochs: 70,  acc_th: 0.93, mask_threshold: 0.01,  batch_size: 1024, lambda_norm: 0.05}
+    - {D: 10000, k: 1250, lr: 0.001, epochs: 70,  acc_th: 0.93, mask_threshold: 0.01,  batch_size: 1024, lambda_norm: 0.05}

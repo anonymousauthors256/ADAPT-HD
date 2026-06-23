@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adapthd"
+version = "0.1.0"
+description = "Adaptive, quantized hyperdimensional computing classifiers with learnable per-sample sparsity."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = [
+    "numpy",
+    "torch",
+    "scikit-learn",
+    "scipy",
+    "pyyaml",
+    "tqdm",
+]
+
+[project.optional-dependencies]
+viz = ["matplotlib"]
+data = ["torchvision"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["adapthd*"]
